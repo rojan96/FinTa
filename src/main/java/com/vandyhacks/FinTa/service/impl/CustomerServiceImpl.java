@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public String addCustomer(Customer customer) {
 		String password = customer.getPassword();
-		var encryptedPassword = passwordEncoder.encode(password);
+		String encryptedPassword = passwordEncoder.encode(password);
 		customer.setPassword(encryptedPassword);
 		customerRepository.save(customer);
 		return "customer added successfully.";
