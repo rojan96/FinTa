@@ -11,4 +11,6 @@ public interface CustomerService {
 	public Page<Customer> getAllCustomers(Pageable pageable);
 
 	public String addCustomer(Customer customer);
+
+	public Customer getCustomerbyUsername(String username);
 }

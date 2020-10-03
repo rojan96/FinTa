@@ -32,4 +32,9 @@ public class CustomerServiceImpl implements CustomerService {
 		customerRepository.save(customer);
 		return "customer added successfully.";
 	}
+
+	@Override
+	public Customer getCustomerbyUsername(String username) {
+		return customerRepository.findByUsername(username);
+	}
 }

@@ -28,4 +28,6 @@ public class Customer {
 	private String lastName;
 
 	private String balance;
+
+	private String[] items;
 }
