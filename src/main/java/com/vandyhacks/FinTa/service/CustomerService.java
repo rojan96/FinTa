@@ -13,4 +13,7 @@ public interface CustomerService {
 	public String addCustomer(Customer customer);
 
 	public Customer getCustomerbyUsername(String username);
+
+	public Customer updateCurrentCustomer(Customer customer);
+
 }

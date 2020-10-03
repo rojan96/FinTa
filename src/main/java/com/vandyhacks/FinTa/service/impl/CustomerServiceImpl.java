@@ -26,15 +26,33 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public String addCustomer(Customer customer) {
+		try {
+			if (customerRepository.findByUsername(customer.getUsername()) != null)
+				return "Username already exists";
+		} catch (Exception e) {
+			return "Username already exists";
+		}
 		String password = customer.getPassword();
 		String encryptedPassword = passwordEncoder.encode(password);
 		customer.setPassword(encryptedPassword);
 		customerRepository.save(customer);
-		return "customer added successfully.";
+		return "Customer added successfully.";
 	}
 
 	@Override
 	public Customer getCustomerbyUsername(String username) {
 		return customerRepository.findByUsername(username);
+	}
+
+	public Customer updateCurrentCustomer(Customer dto) {
+		Customer customer = customerRepository.findByUsername(dto.getUsername());
+		customer.setEmail(dto.getEmail());
+		customer.setFirstName(dto.getFirstName());
+		customer.setItems(dto.getItems());
+		customer.setLastName(dto.getLastName());
+		customer.setBalance(dto.getBalance());
+		customer.setUsername(dto.getUsername());
+
+		return customerRepository.save(customer);
 	}
 }
